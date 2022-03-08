@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\SitesController@index');
 Route::get('/add', 'App\Http\Controllers\SitesController@add');
-Auth::routes();
+Route::post('/save', [
+    'uses' => 'App\Http\Controllers\SitesController@save',
+    'as' => 'sites.save'
+]);
 
+
+Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
