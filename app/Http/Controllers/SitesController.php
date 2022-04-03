@@ -9,10 +9,6 @@ use App\Models\Site;
 class SitesController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function index()
     {
@@ -40,11 +36,16 @@ class SitesController extends Controller
         $site->title = $request->input('title');
         $site->description = $request->input('description');
         $site->save();
-
         //2
         //druga metoda dodawania danych do bezy nalezy jednak pamietac o tokenie ktory nie pasuej do zadnego pola w bazie
         //Site::create($request->all());
 
+    }
+
+
+    public function show(Site $site)
+    {
+        return view('sites.show', compact('site'));
     }
 
 }
